@@ -85,6 +85,7 @@
   shellAliases = {
     ll = "ls -alh";
     rebuild = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
+    flakeu = "nix flake update --flake /home/zoro/gnome-nix";
     gs = "git status";
     };
   };
