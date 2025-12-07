@@ -7,11 +7,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
@@ -93,6 +94,20 @@
     ];
   };
 
+  programs.bash = {
+  enable = true;
+  shellAliases = {
+    ll = "ls -alh";
+    rebuild = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
+    gs = "git status";
+    };
+  };
+
+  programs.foot = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -110,6 +125,13 @@
     git
     vscode
   ];
+  
+  # Automatically garbage collect old generations
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d +5";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
