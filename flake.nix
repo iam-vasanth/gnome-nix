@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs-stable, home-manager, ... }:
   let
     host = nixos-btw;
-    user = zoro
+    user = zoro;
     stable = nixpkgs-stable.lib;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
