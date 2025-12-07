@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, host, user, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -79,23 +79,6 @@
     ];
   };
 
-  # Temporary Bash config
-  programs.bash = {
-  enable = true;
-  shellAliases = {
-    ll = "ls -alh";
-    rebuild = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
-    flakeu = "nix flake update --flake /home/zoro/gnome-nix";
-    gs = "git status";
-    };
-  };
-
-  # Temporary foot config
-  programs.foot = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -117,6 +100,7 @@
     wget
     git
     vscode
+    alacritty
   ];
   
   # Automatically garbage collect old generations
