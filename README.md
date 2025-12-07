@@ -1,2 +1,2 @@
-# nix-flake
-Nix flake for my setup.
+# Gnome nix
+Gnome nix flake for my setup.
