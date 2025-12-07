@@ -100,7 +100,7 @@
 
   # To enable Vmware guest tools
   virtualisation.vmware.guest.enable = true;
-  
+
   # Mounting Vmware shared folder
   fileSystems."/home/zoro/gnome-nix" = {
     device = ".host:/gnome-nix";
