@@ -19,7 +19,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.wireless.enable = true;
+
+  # Hostname
   networking.hostName = "nixos-btw";
 
   # Set your time zone.
@@ -114,7 +115,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d +5";
+    options = "--delete-older-than 7d +5";
   };
 
   # Enable the OpenSSH daemon.
