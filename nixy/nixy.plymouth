@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Nixy
+Description=Nix boot animation
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/nixy
+ScriptFile=/usr/share/plymouth/themes/nixy/nixy.script

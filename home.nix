@@ -5,6 +5,9 @@
   home.homeDirectory = "/home/zoro";
   home.stateVersion = "25.11"; # Do not touch.
 
+  # Allow unfree packages in home-manager
+  nixpkgs.config.allowUnfree = true;
+  
   home.packages = with pkgs-unstable; [
     vscode
     alacritty
@@ -19,13 +22,13 @@
 
   programs.gnome-shell = {
     enable = true;
-    extensions = with pkgs.gnomeExtensions; [
-    user-themes
-    dash-to-dock
-    clipboard-indicator
-    appindicator
-    blur-my-shell
-    just-perfection
+    extensions = [
+      { package = pkgs.gnomeExtensions.user-themes; }
+      { package = pkgs.gnomeExtensions.dash-to-dock; }
+      { package = pkgs.gnomeExtensions.clipboard-indicator; }
+      { package = pkgs.gnomeExtensions.appindicator; }
+      { package = pkgs.gnomeExtensions.blur-my-shell; }
+      { package = pkgs.gnomeExtensions.just-perfection; }
     ];
   };
 # Have to see if extensions configurations can be copied since there is no home-manager options for them.

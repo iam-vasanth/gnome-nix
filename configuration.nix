@@ -11,6 +11,36 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.plymouth = {
+    enable = true;
+    theme = "nixy";
+    themePackages = [
+      (pkgs.callPackage ./nixy {})
+    ];
+  };
+
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "loglevel=3"
+    "rd.systemd.show_status=false"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
+    "vt.global_cursor_default=0"
+  ];
+
+  systemd.settings = {
+    Manager = {
+      ShowStatus = "no";
+      DefaultStandardOutput = "null";
+    };
+  };
+
+  # Hide systemd boot menu (press Space to show it when needed)
+  # boot.loader.timeout = 0;
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -116,7 +146,13 @@
   };
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "yes";
+    };
+  };
 
   system.stateVersion = "25.11"; # Do not touch this
 }

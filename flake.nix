@@ -14,8 +14,14 @@
     user = "zoro";
     lib = nixpkgs-stable.lib;
     system = "x86_64-linux";
-    pkgs = nixpkgs-stable.legacyPackages.${system};
-    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    pkgs = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations.${host} = lib.nixosSystem {
       inherit system;
