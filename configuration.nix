@@ -42,10 +42,18 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Enable Niri
+  # programs.niri.enable = true;
+  # Enable Ly display manager
+  # services.displayManager.ly.enable = true;
+  # Noctalia essentials
+  # hardware.bluetooth.enable = true;
+  # services.power-profiles-daemon.enable = true;
+  # services.upower.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -73,9 +81,8 @@
   users.users.zoro = {
     isNormalUser = true;
     description = "ZORO";
-    extraGroups = [ "networkmanager" "wheel" "fuse" ];
+    extraGroups = [ "networkmanager" "wheel" "fuse" "video" ];
     packages = with pkgs; [
-    #  User only packages
     ];
   };
 
@@ -99,8 +106,6 @@
     neovim
     wget
     git
-    vscode
-    alacritty
   ];
   
   # Automatically garbage collect old generations

@@ -5,6 +5,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    # noctalia.url = "github:noctalia-dev/noctalia-shell";
+    # noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }:
   let
@@ -33,5 +35,8 @@
         inherit pkgs-unstable;
       };
     };
+    # nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
+    #   modules = [ ./noctalia.nix ];
+    # };
   };
 }
