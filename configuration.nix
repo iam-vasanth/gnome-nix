@@ -11,37 +11,35 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    nixyTheme = pkgs.callPackage /home/zoro/gnome-nix/nixy-theme.nix {};
+  };
+
   boot.plymouth = {
     enable = true;
-    themePackages = [
-      (pkgs.runCommand "plymouth-nixy-theme" {} ''
-        mkdir -p $out/share/plymouth/themes/nixy
-        cp ${/home/zoro/nixy/logo.png} $out/share/plymouth/themes/nixy/logo.png
-        cp ${/home/zoro/nixy/nixy.plymouth} $out/share/plymouth/themes/nixy/nixy.plymouth
-        cp ${/home/zoro/nixy/nixy.script} $out/share/plymouth/themes/nixy/nixy.script
-      '')
-    ];
     theme = "nixy";
+    themePackages = [ pkgs.nixyTheme ];
   };
 
-  boot.consoleLogLevel = 0;
-  boot.initrd.verbose = false;
-  boot.kernelParams = [
-    "quiet"
-    "splash"
-    "loglevel=3"
-    "rd.systemd.show_status=false"
-    "rd.udev.log_level=3"
-    "udev.log_priority=3"
-    "vt.global_cursor_default=0"
-  ];
+# Keep your other Plymouth settings
+boot.consoleLogLevel = 0;
+boot.initrd.verbose = false;
+boot.kernelParams = [
+  "quiet"
+  "splash"
+  "loglevel=3"
+  "rd.systemd.show_status=false"
+  "rd.udev.log_level=3"
+  "udev.log_priority=3"
+  "vt.global_cursor_default=0"
+];
 
-  systemd.settings = {
-    Manager = {
-      ShowStatus = "no";
-      DefaultStandardOutput = "null";
-    };
+systemd.settings = {
+  Manager = {
+    ShowStatus = "no";
+    DefaultStandardOutput = "null";
   };
+};
 
   # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 0;
@@ -143,6 +141,7 @@
     git
     dos2unix
     imagemagick
+    nixyTheme
   ];
   
   # Automatically garbage collect old generations

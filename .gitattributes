@@ -1,0 +1,6 @@
+*.nix     text eol=lf
+*.plymouth text eol=lf
+*.script  text eol=lf
+
+# To all files
+* text eol=lf

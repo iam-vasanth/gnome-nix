@@ -14,7 +14,34 @@ logo.y = Window.GetHeight() / 2 - logo.image.GetHeight() / 2;
 logo.sprite = Sprite(logo.image);
 logo.sprite.SetPosition(logo.x, logo.y, 0);
 
+// Pulsating glow effect variables
+glow.alpha = 0;
+glow.direction = 1;
+glow.speed = 0.02;
+
 status = "normal";
+
+#----------------------------------------- Animation Loop --------------------------------
+
+fun refresh_callback() {
+    // Update glow alpha for pulsating effect
+    glow.alpha = glow.alpha + (glow.speed * glow.direction);
+    
+    // Reverse direction at bounds (0.3 to 1.0 for smooth pulse)
+    if (glow.alpha >= 1.0) {
+        glow.alpha = 1.0;
+        glow.direction = -1;
+    }
+    if (glow.alpha <= 0.3) {
+        glow.alpha = 0.3;
+        glow.direction = 1;
+    }
+    
+    // Apply the pulsating opacity
+    logo.sprite.SetOpacity(glow.alpha);
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
 
 #----------------------------------------- Dialogue --------------------------------
 
