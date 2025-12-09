@@ -31,8 +31,9 @@
       { package = pkgs.gnomeExtensions.just-perfection; }
     ];
   };
-# Have to see if extensions configurations can be copied since there is no home-manager options for them.
-
+/* Extensions can be configured with dconf options but to know the various options for various extension.
+   Have to dump the dconf settings using https://github.com/nix-community/dconf2nix */
+   
   # Bash config
   programs.bash = {
   enable = true;

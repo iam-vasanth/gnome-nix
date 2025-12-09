@@ -11,6 +11,28 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+    # Kernal params
+  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "loglevel=3"
+    "rd.systemd.show_status=false"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
+    "vt.global_cursor_default=0"
+  ];
+
+  # Silences systemd logs
+  systemd.settings = {
+    Manager = {
+      ShowStatus = "no";
+      DefaultStandardOutput = "null";
+    };
+  };
+
+  # Nixy plymouth theme
   nixpkgs.config.packageOverrides = pkgs: rec {
     nixyTheme = pkgs.callPackage /home/zoro/gnome-nix/nixy-theme.nix {};
   };
@@ -20,26 +42,6 @@
     theme = "nixy";
     themePackages = [ pkgs.nixyTheme ];
   };
-
-# Keep your other Plymouth settings
-boot.consoleLogLevel = 0;
-boot.initrd.verbose = false;
-boot.kernelParams = [
-  "quiet"
-  "splash"
-  "loglevel=3"
-  "rd.systemd.show_status=false"
-  "rd.udev.log_level=3"
-  "udev.log_priority=3"
-  "vt.global_cursor_default=0"
-];
-
-systemd.settings = {
-  Manager = {
-    ShowStatus = "no";
-    DefaultStandardOutput = "null";
-  };
-};
 
   # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 0;
@@ -54,7 +56,7 @@ systemd.settings = {
   networking.networkmanager.enable = true;
 
   # Hostname
-  networking.hostName = "nixos-btw";
+  networking.hostName = "${host}";
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -111,10 +113,10 @@ systemd.settings = {
   services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.zoro = {
+  users.users.${user} = {
     isNormalUser = true;
     description = "ZORO";
-    extraGroups = [ "networkmanager" "wheel" "fuse" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "fuse" "video" ];
     packages = with pkgs; [
     ];
   };
@@ -139,9 +141,11 @@ systemd.settings = {
     neovim
     wget
     git
+    fuse
+    fuse3
     dos2unix
     imagemagick
-    nixyTheme
+    nixyTheme # Personal nix plymouth theme
   ];
   
   # Automatically garbage collect old generations
