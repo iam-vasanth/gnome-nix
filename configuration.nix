@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
-    # Kernal params
+  # Kernel params
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
   boot.kernelParams = [
