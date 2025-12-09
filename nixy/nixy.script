@@ -7,34 +7,18 @@ screen.h = Window.GetHeight();
 screen.half.w = Window.GetWidth() / 2;
 screen.half.h = Window.GetHeight() / 2;
 
-// Load and scale logo (2x bigger)
-logo.original = Image("logo.png");
-logo.image = logo.original.Scale(logo.original.GetWidth() * 2, logo.original.GetHeight() * 2);
-
-// Center logo
+logo.image = Image("logo.png");
 logo.x = Window.GetWidth() / 2 - logo.image.GetWidth() / 2;
 logo.y = Window.GetHeight() / 2 - logo.image.GetHeight() / 2;
-logo.minOpacity = 0.3;
-logo.opacityAngle = 0.0;
 
 logo.sprite = Sprite(logo.image);
 logo.sprite.SetPosition(logo.x, logo.y, 0);
 
-// Pulsating animation
-fun refresh()
-{
-    // 0.5 Hz pulsating rate
-    logo.opacityAngle += ((2 * 3.14) / 50) * 0.5; 
-    opacity = (Math.Cos(logo.opacityAngle) + 1) / 2;
-    opacity *= 1 - logo.minOpacity;
-    opacity += logo.minOpacity;
-    logo.sprite.SetOpacity(opacity);
-}
-
-Plymouth.SetRefreshFunction(refresh);
 status = "normal";
 
-#----------------------------------------- Password prompt --------------------------------
+#----------------------------------------- Dialogue --------------------------------
+
+// Password prompt variables
 bullets = null;
 prompt = null;
 bullet.image = Image.Text("*", 1, 1, 1);
@@ -50,6 +34,7 @@ fun DisplayPasswordCallback(nil, bulletCount) {
     prompt.sprite.SetX(screen.half.w - prompt.image.GetWidth() / 2);
     prompt.sprite.SetY(screen.h - 4 * prompt.image.GetHeight());
     
+    // Clear all bullets (user might hit backspace)
     bullets = null;
     for (i = 0; i < bulletCount; i++) {
         bullets[i].sprite = Sprite(bullet.image);
@@ -69,6 +54,7 @@ Plymouth.SetDisplayNormalFunction(display_normal_callback);
 Plymouth.SetDisplayPasswordFunction(DisplayPasswordCallback);
 
 #----------------------------------------- Quit --------------------------------
+
 fun quit_callback ()
 {
   logo.sprite.SetOpacity (1);
@@ -77,6 +63,7 @@ fun quit_callback ()
 Plymouth.SetQuitFunction(quit_callback);
 
 #----------------------------------------- Message --------------------------------
+
 message_sprites = [];
 message_sprite_count = 0;
 message_sprite_y = 10;

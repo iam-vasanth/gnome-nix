@@ -4,5 +4,5 @@ Description=Nix boot animation
 ModuleName=script
 
 [script]
-ImageDir=/usr/share/plymouth/themes/nixy
-ScriptFile=/usr/share/plymouth/themes/nixy/nixy.script
+ImageDir=/share/plymouth/themes/nixy
+ScriptFile=/share/plymouth/themes/nixy/nixy.script

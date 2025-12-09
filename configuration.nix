@@ -13,10 +13,15 @@
 
   boot.plymouth = {
     enable = true;
-    theme = "nixy";
     themePackages = [
-      (pkgs.callPackage ./nixy {})
+      (pkgs.runCommand "plymouth-nixy-theme" {} ''
+        mkdir -p $out/share/plymouth/themes/nixy
+        cp ${/home/zoro/nixy/logo.png} $out/share/plymouth/themes/nixy/logo.png
+        cp ${/home/zoro/nixy/nixy.plymouth} $out/share/plymouth/themes/nixy/nixy.plymouth
+        cp ${/home/zoro/nixy/nixy.script} $out/share/plymouth/themes/nixy/nixy.script
+      '')
     ];
+    theme = "nixy";
   };
 
   boot.consoleLogLevel = 0;
@@ -136,6 +141,8 @@
     neovim
     wget
     git
+    dos2unix
+    imagemagick
   ];
   
   # Automatically garbage collect old generations
