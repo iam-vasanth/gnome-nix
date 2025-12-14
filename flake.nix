@@ -14,18 +14,17 @@
     host = "nixos-btw";
     user = "zoro";
     lib = nixpkgs-stable.lib;
-    system = "x86_64-linux";
+    hostPlatform = "x86_64-linux";
     pkgs = import nixpkgs-stable {
-      inherit system;
+      inherit hostPlatform;
       config.allowUnfree = true;
     };
     pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
+      inherit hostPlatform;
       config.allowUnfree = true;
     };
   in {
-    nixosConfigurations.${host} = lib.nixosSystem {
-      inherit system;
+    nixosConfigurations.${host} = nixpkgs-stable.lib.nixosSystem {
       modules = [ ./configuration.nix ];
       specialArgs = {
         inherit host;

@@ -35,7 +35,7 @@
   boot.plymouth = {
     enable = true;
     theme = "nixy";
-    themePackages = [ nixy-theme.packages.${pkgs-unstable.system}.default ];
+    themePackages = [ nixy-theme.packages.${pkgs-unstable.stdenv.hostPlatform.system}.default ];
   };
 
   # # Nixy plymouth theme
@@ -84,8 +84,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable Niri
   # programs.niri.enable = true;
@@ -116,7 +116,7 @@
   };
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {

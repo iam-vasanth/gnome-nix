@@ -38,6 +38,19 @@
     # EDITOR = "emacs";
   };
 
+  # Bash config
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      "ll" = "ls -alh";
+      ".." = "cd ..";
+      "rebuild" = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
+      "flakeu" = "nix flake update --flake /home/zoro/gnome-nix";
+      "hupdate" = "home-manager switch --impure --flake /home/zoro/gnome-nix";
+      "gs" = "git status";
+      };
+  };
+
   programs.gnome-shell = {
     enable = true;
     extensions = [
@@ -51,18 +64,24 @@
   };
 /* Extensions can be configured with dconf options but to know the various options for various extension.
    Have to dump the dconf settings using https://github.com/nix-community/dconf2nix */
-   
-  # Bash config
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      "ll" = "ls -alh";
-      ".." = "cd ..";
-      "rebuild" = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
-      "flakeu" = "nix flake update --flake /home/zoro/gnome-nix";
-      "hupdate" = "home-manager switch --flake /home/zoro/gnome-nix";
-      "gs" = "git status";
-      };
+  
+  dconf.settings = {
+    # # Set wallpaper
+    # "org/gnome/desktop/background" = {
+    #   picture-uri = "file:///home/Pictures/Wallpapers/wall-4.jpg";
+    # };
+    # Set dark mode and GTK theme - Change the dark theme to light if needed
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita-dark";
+    };
+    # Disable dynamic workspaces and set number of workspaces
+    "org/gnome/mutter" = {
+      dynamic-workspaces = false;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 4;
+    };
   };
 
   programs.home-manager.enable = true;
