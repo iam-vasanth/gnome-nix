@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, ... }:
+{ config, host, user, pkgs, pkgs-unstable, nixy-theme, ... }:
 
 {
   imports =
@@ -32,18 +32,24 @@
     };
   };
 
-  # Nixy plymouth theme
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    nixyTheme = pkgs.callPackage /home/zoro/gnome-nix/nixy-theme.nix {};
-  };
-
   boot.plymouth = {
     enable = true;
     theme = "nixy";
-    themePackages = [ pkgs.nixyTheme ];
+    themePackages = [ nixy-theme.packages.${pkgs-unstable.system}.default ];
   };
 
-  # Hide systemd boot menu (press Space to show it when needed)
+  # # Nixy plymouth theme
+  # nixpkgs.config.packageOverrides = pkgs: rec {
+  #   nixyTheme = pkgs.callPackage /home/zoro/gnome-nix/nixy-theme.nix {};
+  # };
+
+  # boot.plymouth = {
+  #   enable = true;
+  #   theme = "nixy";
+  #   themePackages = [ pkgs.nixyTheme ];
+  # };
+
+  # # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 0;
 
   # Use latest kernel.
@@ -145,7 +151,7 @@
     fuse3
     dos2unix
     imagemagick
-    nixyTheme # Personal nix plymouth theme
+    # nixyTheme # Personal nix plymouth theme
   ];
   
   # Automatically garbage collect old generations

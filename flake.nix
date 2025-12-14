@@ -5,11 +5,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
-    # nixy-theme.url = "github:iam-vasanth/nixy";
+    nixy-theme.url = "github:iam-vasanth/nixy";
     # noctalia.url = "github:noctalia-dev/noctalia-shell";
     # noctalia.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
@@ -31,7 +31,7 @@
         inherit host;
         inherit user;
         inherit pkgs-unstable;
-        # inherit nixy-Ptheme;
+        inherit nixy-theme;
       };
     };
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
@@ -41,7 +41,6 @@
         inherit host;
         inherit user;
         inherit pkgs-unstable;
-        # inherit nixy-Ptheme;
       };
     };
     # nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
