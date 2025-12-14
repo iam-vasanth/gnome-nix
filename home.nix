@@ -13,6 +13,24 @@
     alacritty
   ];
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
+  };
+
+  gtk.gtk3.bookmarks = [
+    "file://${config.home.homeDirectory}/Documents"
+    "file://${config.home.homeDirectory}/Downloads"
+    "file://${config.home.homeDirectory}/Music"
+    "file://${config.home.homeDirectory}/Pictures"
+    "file://${config.home.homeDirectory}/Videos"
+  ];
+
   home.file = {
   };
 
@@ -36,15 +54,15 @@
    
   # Bash config
   programs.bash = {
-  enable = true;
-  shellAliases = {
-    "ll" = "ls -alh";
-    ".." = "cd ..";
-    "rebuild" = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
-    "flakeu" = "nix flake update --flake /home/zoro/gnome-nix";
-    "hupdate" = "home-manager switch --flake /home/zoro/gnome-nix";
-    "gs" = "git status";
-    };
+    enable = true;
+    shellAliases = {
+      "ll" = "ls -alh";
+      ".." = "cd ..";
+      "rebuild" = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
+      "flakeu" = "nix flake update --flake /home/zoro/gnome-nix";
+      "hupdate" = "home-manager switch --flake /home/zoro/gnome-nix";
+      "gs" = "git status";
+      };
   };
 
   programs.home-manager.enable = true;
