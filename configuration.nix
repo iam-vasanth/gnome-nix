@@ -38,17 +38,6 @@
     themePackages = [ nixy-theme.packages.${pkgs-unstable.stdenv.hostPlatform.system}.default ];
   };
 
-  # # Nixy plymouth theme
-  # nixpkgs.config.packageOverrides = pkgs: rec {
-  #   nixyTheme = pkgs.callPackage /home/zoro/gnome-nix/nixy-theme.nix {};
-  # };
-
-  # boot.plymouth = {
-  #   enable = true;
-  #   theme = "nixy";
-  #   themePackages = [ pkgs.nixyTheme ];
-  # };
-
   # # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 0;
 
@@ -86,15 +75,6 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
-  # Enable Niri
-  # programs.niri.enable = true;
-  # Enable Ly display manager
-  # services.displayManager.ly.enable = true;
-  # Noctalia essentials
-  # hardware.bluetooth.enable = true;
-  # services.power-profiles-daemon.enable = true;
-  # services.upower.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -151,7 +131,6 @@
     fuse3
     dos2unix
     imagemagick
-    # nixyTheme # Personal nix plymouth theme
   ];
   
   # Automatically garbage collect old generations

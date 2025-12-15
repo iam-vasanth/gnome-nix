@@ -16,22 +16,25 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    documents = "${config.home.homeDirectory}/Documents";
     download = "${config.home.homeDirectory}/Downloads";
-    music = "${config.home.homeDirectory}/Music";
+    documents = "${config.home.homeDirectory}/Documents";
     pictures = "${config.home.homeDirectory}/Pictures";
     videos = "${config.home.homeDirectory}/Videos";
+    music = "${config.home.homeDirectory}/Music";
+    publicShare = null;
+    templates = null;
+    desktop = null;
   };
 
-  gtk.gtk3.bookmarks = [
-    "file://${config.home.homeDirectory}/Documents"
-    "file://${config.home.homeDirectory}/Downloads"
-    "file://${config.home.homeDirectory}/Music"
-    "file://${config.home.homeDirectory}/Pictures"
-    "file://${config.home.homeDirectory}/Videos"
-  ];
-
   home.file = {
+    ".config/gtk-3.0/bookmarks".text = ''
+      file://${config.home.homeDirectory}/Downloads
+      file://${config.home.homeDirectory}/Documents
+      file://${config.home.homeDirectory}/Projects
+      file://${config.home.homeDirectory}/Pictures
+      file://${config.home.homeDirectory}/Videos
+      file://${config.home.homeDirectory}/Music
+    '';
   };
 
   home.sessionVariables = {
@@ -66,23 +69,78 @@
    Have to dump the dconf settings using https://github.com/nix-community/dconf2nix */
   
   dconf.settings = {
-    # # Set wallpaper
-    # "org/gnome/desktop/background" = {
-    #   picture-uri = "file:///home/Pictures/Wallpapers/wall-4.jpg";
-    # };
-    # Set dark mode and GTK theme - Change the dark theme to light if needed
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "Adwaita-dark";
+    # Set wallpaper
+    "org/gnome/desktop/background" = {
+      picture-uri = "file://${config.home.homeDirectory}/Wallpapers/wall-4.png";
+      picture-uri-dark = "file://${config.home.homeDirectory}/Wallpapers/wall-4.png";
     };
-    # Disable dynamic workspaces and set number of workspaces
+    "org/gnome/desktop/interface" = {
+      accent-color="red";
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita";
+      enable-animations=true;
+      enable-hot-corners=false;
+    };
     "org/gnome/mutter" = {
       dynamic-workspaces = false;
     };
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 4;
     };
+    "org/gnome/desktop/peripherals/keyboard" = {
+      numlock-state=true;
+    };
+    "org/gnome/desktop/session" = {
+      idle-delay=0;
+    };
+    "org/gnome/desktop/notifications" = {
+      show-banners=false;
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      move-to-workspace-1=["<Shift><Super>1"];
+      move-to-workspace-2=["<Shift><Super>2"];
+      move-to-workspace-3=["<Shift><Super>3"];
+      move-to-workspace-4=["<Shift><Super>4"];
+      switch-to-workspace-1=["<Super>1"];
+      switch-to-workspace-2=["<Super>2"];
+      switch-to-workspace-3=["<Super>3"];
+      switch-to-workspace-4=["<Super>4"];
+      show-desktop=["<Super>d"];
+    };
+    # Ext : Just perfection
+    "org/gnome/Console" = {
+      font-scale=0.99999999999999989;
+      last-window-maximised=true;
+      last-window-size=[732 528];
+    };
+    "org/gnome/control-center" = {
+      last-panel="background";
+      window-state=[980 640 0];
+    };
+    "org/gnome/shell/extensions/just-perfection" = {
+      theme=true;
+    };
+    # Ext : Dash to dock
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme=true;
+      background-opacity=0.80000000000000004;
+      dance-urgent-applications=false;
+      dash-max-icon-size=42;
+      dock-position="BOTTOM";
+      height-fraction=0.90000000000000002;
+      hot-keys=false;
+      preferred-monitor=-2;
+      scroll-to-focused-application=true;
+      show-apps-always-in-the-edge=false;
+      show-icons-emblems=false;
+      show-mounts=false;
+      show-mounts-only-mounted=false;
+      show-show-apps-button=false;
+      show-trash=false;
+    };
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden=true;
+    };
   };
-
   programs.home-manager.enable = true;
 }
