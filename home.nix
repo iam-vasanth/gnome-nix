@@ -4,9 +4,6 @@
   home.username = "zoro";
   home.homeDirectory = "/home/zoro";
   home.stateVersion = "25.11"; # Do not touch.
-
-  # Allow unfree packages in home-manager
-  nixpkgs.config.allowUnfree = true;
   
   home.packages = with pkgs-unstable; [
     vscode
