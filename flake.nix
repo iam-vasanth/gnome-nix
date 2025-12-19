@@ -3,12 +3,17 @@
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.home-manager.follows = "home-manager";
     nixy-theme.url = "github:iam-vasanth/nixy";
   };
-  out
-  puts = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
@@ -39,6 +44,7 @@
         inherit host;
         inherit user;
         inherit pkgs-unstable;
+        inherit zen-browser;
       };
     };
   };

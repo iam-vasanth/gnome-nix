@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, ... }:
+{ config, host, user, pkgs, pkgs-unstable, zen-browser, ... }:
 
 {
   home.username = "zoro";
@@ -9,6 +9,38 @@
     vscode
     alacritty
   ];
+
+  imports = [
+    zen-browser.homeModules.default  # Stable
+    # zen-browser.homeModules.beta
+    # zen-browser.homeModules.twilight
+  ];
+
+  programs.zen-browser = {
+    enable = true;
+    policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+    };
+  };
+
+/* For extensions configuration and installation refer to 
+https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
+*/
 
   xdg.userDirs = {
     enable = true;
