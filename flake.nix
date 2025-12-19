@@ -7,7 +7,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
     nixy-theme.url = "github:iam-vasanth/nixy";
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
+  out
+  puts = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
