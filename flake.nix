@@ -11,6 +11,7 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.home-manager.follows = "home-manager";
+    };
     nixy-theme.url = "github:iam-vasanth/nixy";
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
