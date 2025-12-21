@@ -1,19 +1,17 @@
 { config, host, user, pkgs, pkgs-unstable, zen-browser, ... }:
 
 {
-  home.username = "zoro";
-  home.homeDirectory = "/home/zoro";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
   home.stateVersion = "25.11"; # Do not touch.
   
-  home.packages = with pkgs-unstable; [
-    vscode
-    alacritty
+  imports = [
+    zen-browser.homeModules.default
   ];
 
-  imports = [
-    zen-browser.homeModules.default  # Stable
-    # zen-browser.homeModules.beta
-    # zen-browser.homeModules.twilight
+  home.packages = [
+    pkgs-unstable.vscode
+    pkgs-unstable.alacritty
   ];
 
   programs.zen-browser = {
@@ -76,9 +74,9 @@ https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
     shellAliases = {
       "ll" = "ls -alh";
       ".." = "cd ..";
-      "rebuild" = "sudo nixos-rebuild switch --impure --flake /home/zoro/gnome-nix";
-      "flakeu" = "nix flake update --flake /home/zoro/gnome-nix";
-      "hupdate" = "home-manager switch --impure --flake /home/zoro/gnome-nix";
+      rebuild = "sudo nixos-rebuild switch --impure --flake ~/gnome-nix";
+      flakeu  = "nix flake update --flake ~/gnome-nix";
+      hupdate = "home-manager switch --impure --flake ~/gnome-nix";
       "gs" = "git status";
       };
   };
