@@ -2,3 +2,7 @@ hardware-configuration.nix
 
 # Logs
 /logs
+
+# Personal
+/.misc
+/.ideas
