@@ -12,12 +12,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.home-manager.follows = "home-manager";
     };
-    nixy-theme = {
+    plymouth-nixy = {
       url = "github:iam-vasanth/plymouth-nixy";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, zen-browser, nixy-theme, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, zen-browser, plymouth-nixy, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
@@ -39,7 +39,7 @@
         inherit host;
         inherit user;
         inherit pkgs-unstable;
-        inherit nixy-theme;
+        inherit plymouth-nixy;
       };
     };
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {

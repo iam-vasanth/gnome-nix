@@ -2,5 +2,11 @@
 *.plymouth text eol=lf
 *.script  text eol=lf
 
-# To all files
+# To all text files
 * text eol=lf
+
+# Leave images as it is
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary

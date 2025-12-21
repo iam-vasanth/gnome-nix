@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, nixy-theme, ... }:
+{ config, host, user, pkgs, pkgs-unstable, plymouth-nixy, ... }:
 
 {
   imports =
@@ -35,7 +35,7 @@
   boot.plymouth = {
     enable = true;
     theme = "nixy";
-    themePackages = [nixy-theme.packages.${pkgs.system}.nixy-plymouth-theme ];
+    themePackages = [ plymouth-nixy.packages.x86_64-linux.default ];
   };
 
   # # Hide systemd boot menu (press Space to show it when needed)
