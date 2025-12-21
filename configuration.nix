@@ -34,7 +34,7 @@
 
   boot.plymouth = {
     enable = true;
-    theme = "nixy";  # Matches the folder name
+    theme = "nixy";
     themePackages = [nixy-theme.packages.${pkgs.system}.nixy-plymouth-theme ];
   };
 
