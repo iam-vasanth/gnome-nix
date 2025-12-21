@@ -34,12 +34,12 @@
 
   boot.plymouth = {
     enable = true;
-    theme = "nixy";
-    themePackages = [ nixy-theme.packages.${pkgs-unstable.stdenv.hostPlatform.system}.default ];
+    theme = "nixy";  # Matches the folder name
+    themePackages = [nixy-theme.packages.${pkgs.system}.nixy-plymouth-theme ];
   };
 
   # # Hide systemd boot menu (press Space to show it when needed)
-  # boot.loader.timeout = 0;
+  # boot.loader.timeout = 3;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;

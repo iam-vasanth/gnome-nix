@@ -12,24 +12,28 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.home-manager.follows = "home-manager";
     };
-    nixy-theme.url = "github:iam-vasanth/nixy";
+    nixy-theme = {
+      url = "github:iam-vasanth/plymouth-nixy";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, zen-browser, nixy-theme, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
     lib = nixpkgs-stable.lib;
-    hostPlatform = "x86_64-linux";
+    system = "x86_64-linux";
     pkgs = import nixpkgs-stable {
-      inherit hostPlatform;
+      inherit system;
       config.allowUnfree = true;
     };
     pkgs-unstable = import nixpkgs-unstable {
-      inherit hostPlatform;
+      inherit system;
       config.allowUnfree = true;
     };
   in {
     nixosConfigurations.${host} = nixpkgs-stable.lib.nixosSystem {
+      inherit system;
       modules = [ ./configuration.nix ];
       specialArgs = {
         inherit host;

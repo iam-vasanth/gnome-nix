@@ -6,3 +6,4 @@ hardware-configuration.nix
 # Personal
 /.misc
 /.ideas
+/plymouth-nixy
