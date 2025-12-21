@@ -14,7 +14,7 @@
     };
     nixy-theme.url = "github:iam-vasanth/nixy";
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nixy-theme, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, zen-browser, nixy-theme, ... }:
   let
     host = "nixos-btw";
     user = "zoro";

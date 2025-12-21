@@ -12,10 +12,10 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
 CYAN='\033[0;36m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 BOLD='\033[1m'
 
-# Get script directory
+# Script directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Setup logging
@@ -33,10 +33,8 @@ log() {
     shift
     local message="$@"
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
-    
     # Format for log file
     echo "[$timestamp] [$level] $message" >> "$LOG_FILE"
-    
     # Format for terminal with colors
     case "$level" in
         INFO)
@@ -79,8 +77,6 @@ run_cmd() {
 run_cmd_visible() {
     local cmd="$@"
     log INFO "Executing: $cmd"
-    
-    # Use tee to show output and log it
     if eval "$cmd" 2>&1 | tee -a "$LOG_FILE"; then
         log SUCCESS "Command completed: $cmd"
         return 0
@@ -112,12 +108,25 @@ check_root() {
     fi
 }
 
+# Function to check if home-manager is installed
+check_home_manager() {
+    if command -v home-manager >/dev/null 2>&1; then
+        return 0
+    fi
+    # Fallback check Nix profile
+    if nix profile list 2>/dev/null | grep -q home-manager; then
+        return 0
+    fi
+    return 1
+}
+
+
 # Start of script
 clear
 echo -e "${CYAN}${BOLD}"
-echo "╔════════════════════════════════════════════╗"
-echo "║     NixOS Setup Script with Logging        ║"
-echo "╚════════════════════════════════════════════╝"
+echo "╔════════════════════════════╗"
+echo "║     NixOS Setup Script     ║"
+echo "╚════════════════════════════╝"
 echo -e "${NC}\n"
 
 log INFO "Starting NixOS setup script"
@@ -127,7 +136,7 @@ log INFO "Log file: $LOG_FILE"
 # Check if running as root
 check_root
 
-# Step 1: Setup Pictures directory
+# Setup Pictures directory
 log STEP "Step 1: Setting up Pictures directory"
 if [[ ! -d "$HOME/Pictures" ]]; then
     run_cmd "mkdir -p $HOME/Pictures"
@@ -143,39 +152,55 @@ else
     log WARNING "Wallpapers directory not found at $SCRIPT_DIR/assets/Wallpapers"
 fi
 
-# Step 2: Setup home-manager channel
-log STEP "Step 2: Setting up home-manager channel"
-run_cmd "nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager"
-log INFO "Updating nix channels (this may take a while)"
-run_cmd_visible "nix-channel --update"
+# Install home-manager (only if needed)
+log STEP "Step 2: Checking home-manager installation"
 
-# Step 3: Install home-manager
-log STEP "Step 3: Installing home-manager"
-log INFO "This may take several minutes..."
-run_cmd_visible "nix-shell '<home-manager>' -A install"
+if check_home_manager; then
+    log INFO "Skipping home-manager installation"
+else
+    log INFO "Installing home-manager (this may take several minutes)..."
+    
+    # Add the channel (safe to run multiple times, but we can skip if already added)
+    if ! nix-channel --list | grep -q "^home-manager "; then
+        run_cmd "nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager"
+        log INFO "Updating nix channels"
+        run_cmd_visible "nix-channel --update"
+    else
+        log INFO "home-manager channel already added"
+    fi
+    # Install home-manager
+    run_cmd_visible "nix-shell '<home-manager>' -A install"
+    # Verify it worked
+    if check_home_manager; then
+        log SUCCESS "home-manager installed successfully"
+    else
+        log ERROR "home-manager installation failed"
+        exit 1
+    fi
+fi
 
-# Step 4: Rebuild NixOS configuration
-log STEP "Step 4: Rebuilding NixOS configuration"
+# Rebuild NixOS configuration
+log STEP "Step 3: Rebuilding NixOS configuration"
 log INFO "Running nixos-rebuild switch (this may take a while)"
 run_cmd_visible "sudo nixos-rebuild switch --impure --flake $SCRIPT_DIR"
 
-# Step 5: Update flake
-log STEP "Step 5: Updating flake inputs"
+# Update flake
+log STEP "Step 4: Updating flake inputs"
 run_cmd_visible "nix flake update --flake $SCRIPT_DIR"
 
-# Step 6: Apply home-manager configuration
-log STEP "Step 6: Applying home-manager configuration"
+# Apply home-manager configuration
+log STEP "Step 5: Applying home-manager configuration"
 log INFO "Running home-manager switch"
 run_cmd_visible "home-manager switch --impure --flake $SCRIPT_DIR"
 
 # Create symlink to latest log
-ln -sf "$LOG_FILE" "$LATEST_LOG"
+rm -f "$LATEST_LOG" && ln -s "$LOG_FILE" "$LATEST_LOG"
 
 # Success message
 echo -e "\n${GREEN}${BOLD}"
-echo "╔════════════════════════════════════════════╗"
-echo "║          Setup Completed Successfully!     ║"
-echo "╚════════════════════════════════════════════╝"
+echo "╔═══════════════════════════════════════╗"
+echo "║     Setup Completed Successfully!     ║"
+echo "╚═══════════════════════════════════════╝"
 echo -e "${NC}\n"
 
 log SUCCESS "NixOS setup completed successfully!"
