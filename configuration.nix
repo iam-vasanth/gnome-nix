@@ -11,6 +11,19 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Plymouth configuration
+  boot.plymouth = {
+    enable = true;
+    theme = "nixy";
+    themePackages = [ plymouth-nixy.packages.x86_64-linux.default ];
+  };
+
+  # Hide systemd boot menu (press Space to show it when needed)
+  # boot.loader.timeout = 3;
+  
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Kernel params
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
@@ -32,28 +45,16 @@
     };
   };
 
-  boot.plymouth = {
-    enable = true;
-    theme = "nixy";
-    themePackages = [ plymouth-nixy.packages.x86_64-linux.default ];
-  };
-
-  # # Hide systemd boot menu (press Space to show it when needed)
-  # boot.loader.timeout = 3;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Enable flakes
+  # Enables flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable networking
+  # Enables networking
   networking.networkmanager.enable = true;
 
   # Hostname
   networking.hostName = "${host}";
 
-  # Set your time zone.
+  # Sets your time zone.
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
@@ -106,9 +107,6 @@
     packages = with pkgs; [
     ];
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # To enable Vmware guest tools
   virtualisation.vmware.guest.enable = true;
