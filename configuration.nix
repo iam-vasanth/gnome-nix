@@ -117,7 +117,7 @@
   fileSystems."/home/zoro/gnome-nix" = {
     device = ".host:/gnome-nix";
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    options = [ "umask=22" "uid=1000" "allow_other" "auto_unmount" "defaults" ];
+    options = [ "nofail" "umask=22" "uid=1000" "allow_other" "auto_unmount" "defaults" ];
   };
 
   # Allow unfree packages
