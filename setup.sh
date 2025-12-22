@@ -167,9 +167,6 @@ else
         run_cmd_visible "nix-channel --update"
     else
         log INFO "home-manager channel already added"
-    fi
-    # Install home-manager
-    run_cmd_visible "nix-shell '<home-manager>' -A install"
     # Verify it worked
     if check_home_manager; then
         log SUCCESS "home-manager installed successfully"
