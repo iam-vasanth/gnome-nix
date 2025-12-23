@@ -151,6 +151,7 @@ https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
     "org/gnome/shell" = {
       disable-user-extensions=false;
       favorite-apps=[ org.gnome.Nautilus.desktop Alacritty.desktop ];  # Pinned dock apps
+    };
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme=true;
       background-opacity=0.80000000000000004;
