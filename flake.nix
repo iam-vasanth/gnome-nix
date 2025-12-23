@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -17,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, zen-browser, plymouth-nixy, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, zen-browser, plymouth-nixy, ... }:
   let
     host = "nixos-btw";
     user = "zoro";
@@ -48,7 +49,9 @@
       extraSpecialArgs = {
         inherit host;
         inherit user;
+        inherit pkgs;
         inherit pkgs-unstable;
+        inherit nix-flatpak;
         inherit zen-browser;
       };
     };
