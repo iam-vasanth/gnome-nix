@@ -139,15 +139,15 @@ check_root
 # Setup Pictures directory
 log STEP "Step 1: Setting up Pictures directory"
 if [[ ! -d "$HOME/Pictures" ]]; then
-    run_cmd "mkdir -p $HOME/Pictures"
+    run_cmd "mkdir -p $HOME/Pictures/Wallpapers"
 else
-    log INFO "Pictures directory already exists"
+    log INFO "Pictures directory already exists. Creating Wallpapers subdirectory if needed."
 fi
 
 # Copy wallpapers
 if [[ -d "$SCRIPT_DIR/assets/Wallpapers" ]]; then
     log INFO "Copying wallpapers to Pictures directory"
-    run_cmd "cp -r $SCRIPT_DIR/assets/Wallpapers/* $HOME/Pictures/"
+    run_cmd "cp -r $SCRIPT_DIR/assets/Wallpapers* $HOME/Pictures/Wallpapers/"
 else
     log WARNING "Wallpapers directory not found at $SCRIPT_DIR/assets/Wallpapers"
 fi
