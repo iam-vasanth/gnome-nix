@@ -83,10 +83,13 @@
     variant = "";
   };
 
-  # Enable CUPS to print documents.
+  # Enables flatpak
+  services.flatpak.enable = true; 
+
+  # Enables CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
+  # Enables sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -121,14 +124,15 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    git
-    fuse
-    fuse3
-    dos2unix
-    imagemagick
+  environment.systemPackages = [
+    pkgs.wget
+    pkgs.git
+    pkgs.fuse
+    pkgs.fuse3
+    pkgs.dos2unix
+    pkgs.imagemagick
+    pkgs.neovim
+    pkgs.unstable.distrobox
   ];
   
   # Automatically garbage collect old generations

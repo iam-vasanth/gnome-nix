@@ -7,12 +7,36 @@
   
   imports = [
     zen-browser.homeModules.default
+    nix-flatpak.homeManagerModules.default
   ];
 
   home.packages = [
     pkgs-unstable.vscode
     pkgs-unstable.alacritty
   ];
+
+  services.flatpak = {
+  enable = true;
+  remotes = flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+  packages = [
+    "flathub:app.zen_browser.zen" 
+    "flathub:com.spotify.Client"
+    "flathub:de.haeckerfelix.Fragments"
+    "flathub:com.belmoussaoui.Authenticator"
+    "flathub:com.github.tchx84.Flatseal"
+    "flathub:org.fedoraproject.MediaWriter"
+    "flathub:org.videolan.VLC"
+    "flathub:io.gitlab.adhami3310.Impression"
+    "flathub:com.ranfdev.DistroShelf"
+    "flathub:io.github.flattool.Warehouse"
+    "flathub:org.upscayl.Upscayl"
+    "flathub:md.obsidian.Obsidian"
+    # "flathub:com.ml4w.dotfilesinstaller"  # For dotfiles management
+
+    # Use format: "remote:appId" or just "appId" if from default remote
+    # Find app IDs on https://flathub.org
+  ];
+  };
 
   programs.zen-browser = {
     enable = true;
