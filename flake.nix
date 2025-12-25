@@ -20,7 +20,7 @@
   };
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, zen-browser, plymouth-nixy, ... }:
   let
-    host = "nixos-btw";
+    host = "enma";
     user = "zoro";
     lib = nixpkgs-stable.lib;
     system = "x86_64-linux";
