@@ -90,8 +90,8 @@
   dconf.settings = {
     # Set wallpaper
     "org/gnome/desktop/background" = {
-      picture-uri = "file://${config.home.homeDirectory}/Wallpapers/wall-4.png";
-      picture-uri-dark = "file://${config.home.homeDirectory}/Wallpapers/wall-4.png";
+      picture-uri = "file://home/zoro/Pictures/Wallpapers/wall-4.png";
+      picture-uri-dark = "file://home/zoro/Pictures/Wallpapers/wall-4.png";
     };
     "org/gnome/desktop/interface" = {
       accent-color="red";
