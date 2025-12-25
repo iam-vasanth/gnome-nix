@@ -147,7 +147,7 @@ fi
 # Copy wallpapers
 if [[ -d "$SCRIPT_DIR/assets/Wallpapers" ]]; then
     log INFO "Copying wallpapers to Pictures directory"
-    run_cmd "cp -r $SCRIPT_DIR/assets/Wallpapers* $HOME/Pictures/Wallpapers/"
+    run_cmd "cp -r $SCRIPT_DIR/assets/Wallpapers* $HOME/Pictures/"
 else
     log WARNING "Wallpapers directory not found at $SCRIPT_DIR/assets/Wallpapers"
 fi
