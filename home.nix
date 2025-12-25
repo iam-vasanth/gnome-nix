@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, zen-browser, nix-flatpak, ... }:
+{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, ... }:
 
 {
   home.username = user;
@@ -6,63 +6,31 @@
   home.stateVersion = "25.11"; # Do not touch.
   
   imports = [
-    zen-browser.homeModules.default
-    nix-flatpak.homeManagerModules.default
+    nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
   home.packages = [
-    pkgs-unstable.vscode
     pkgs-unstable.alacritty
   ];
 
   services.flatpak = {
   enable = true;
-  remotes.flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
   packages = [
-    "flathub:app.zen_browser.zen" 
-    "flathub:com.spotify.Client"
-    "flathub:de.haeckerfelix.Fragments"
-    "flathub:com.belmoussaoui.Authenticator"
-    "flathub:com.github.tchx84.Flatseal"
-    "flathub:org.fedoraproject.MediaWriter"
-    "flathub:org.videolan.VLC"
-    "flathub:io.gitlab.adhami3310.Impression"
-    "flathub:com.ranfdev.DistroShelf"
-    "flathub:io.github.flattool.Warehouse"
-    "flathub:org.upscayl.Upscayl"
-    "flathub:md.obsidian.Obsidian"
-    # "flathub:com.ml4w.dotfilesinstaller"  # For dotfiles management
-
-    # Use format: "remote:appId" or just "appId" if from default remote
-    # Find app IDs on https://flathub.org
+    { appId = "app.zen_browser.zen"; origin = "flathub"; }
+    { appId = "com.spotify.Client"; origin = "flathub"; }
+    { appId = "de.haeckerfelix.Fragments"; origin = "flathub"; }
+    { appId = "com.belmoussaoui.Authenticator"; origin = "flathub"; }
+    { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
+    { appId = "org.fedoraproject.MediaWriter"; origin = "flathub"; }
+    { appId = "org.videolan.VLC"; origin = "flathub"; }
+    { appId = "io.gitlab.adhami3310.Impression"; origin = "flathub"; }
+    { appId = "com.ranfdev.DistroShelf"; origin = "flathub"; }
+    { appId = "io.github.flattool.Warehouse"; origin = "flathub"; }
+    { appId = "org.upscayl.Upscayl"; origin = "flathub"; }
+    { appId = "md.obsidian.Obsidian"; origin = "flathub"; }
+    # { appId = "flathub:com.ml4w.dotfilesinstaller"; origin = "flathub" } # For dotfiles management
   ];
   };
-
-  programs.zen-browser = {
-    enable = true;
-    policies = {
-      AutofillAddressEnabled = true;
-      AutofillCreditCardEnabled = false;
-      DisableAppUpdate = true;
-      DisableFeedbackCommands = true;
-      DisableFirefoxStudies = true;
-      DisablePocket = true;
-      DisableTelemetry = true;
-      DontCheckDefaultBrowser = true;
-      NoDefaultBookmarks = true;
-      OfferToSaveLogins = false;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-      };
-    };
-  };
-
-/* For extensions configuration and installation refer to 
-https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
-*/
 
   xdg.userDirs = {
     enable = true;
