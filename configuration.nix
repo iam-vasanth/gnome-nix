@@ -132,7 +132,8 @@
     pkgs.dos2unix
     pkgs.imagemagick
     pkgs.neovim
-    pkgs.unstable.distrobox
+    pkgs-unstable.distrobox
+    pkgs.vscode
   ];
   
   # Automatically garbage collect old generations

@@ -165,15 +165,9 @@ else
         run_cmd "nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz home-manager"
         log INFO "Updating nix channels"
         run_cmd_visible "nix-channel --update"
+        run_cmd_visible "nix-shell '<home-manager>' -A install"
     else
         log INFO "home-manager channel already added"
-    fi
-    # Verify it worked
-    if check_home_manager; then
-        log SUCCESS "home-manager installed successfully"
-    else
-        log ERROR "home-manager installation failed"
-        exit 1
     fi
 fi
 

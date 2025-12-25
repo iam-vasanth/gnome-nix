@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, zen-browser, ... }:
+{ config, host, user, pkgs, pkgs-unstable, zen-browser, nix-flatpak, ... }:
 
 {
   home.username = user;
@@ -17,7 +17,7 @@
 
   services.flatpak = {
   enable = true;
-  remotes = flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+  remotes.flathub = "https://dl.flathub.org/repo/flathub.flatpakrepo";
   packages = [
     "flathub:app.zen_browser.zen" 
     "flathub:com.spotify.Client"
@@ -174,7 +174,7 @@ https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
     # Ext : Dash to dock
     "org/gnome/shell" = {
       disable-user-extensions=false;
-      favorite-apps=[ org.gnome.Nautilus.desktop Alacritty.desktop ];  # Pinned dock apps
+      favorite-apps=[ "org.gnome.Nautilus.desktop" "Alacritty.desktop" ];  # Pinned dock apps
     };
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme=true;
