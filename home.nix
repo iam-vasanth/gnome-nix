@@ -28,6 +28,7 @@
     { appId = "io.github.flattool.Warehouse"; origin = "flathub"; }
     { appId = "org.upscayl.Upscayl"; origin = "flathub"; }
     { appId = "md.obsidian.Obsidian"; origin = "flathub"; }
+    { appId = "com.stremio.Stremio"; origin = "flathub"; }
     # { appId = "flathub:com.ml4w.dotfilesinstaller"; origin = "flathub" } # For dotfiles management
   ];
   };

@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, plymouth-nixy, ... }:
+{ config, host, user, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -11,13 +11,6 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Plymouth configuration
-  boot.plymouth = {
-    enable = true;
-    theme = "nixy";
-    themePackages = [ plymouth-nixy.packages.x86_64-linux.default ];
-  };
-
   # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 3;
   
@@ -29,7 +22,6 @@
   boot.initrd.verbose = false;
   boot.kernelParams = [
     "quiet"
-    "splash"
     "loglevel=3"
     "rd.systemd.show_status=false"
     "rd.udev.log_level=3"
@@ -75,6 +67,10 @@
   services.xserver.enable = true;
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "zoro";
+  };
   services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -132,8 +128,9 @@
     pkgs.dos2unix
     pkgs.imagemagick
     pkgs.neovim
-    pkgs-unstable.distrobox
+    pkgs.gdm-settings
     pkgs.vscode
+    pkgs-unstable.distrobox
   ];
   
   # Automatically garbage collect old generations

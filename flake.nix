@@ -8,12 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    plymouth-nixy = {
-      url = "github:iam-vasanth/plymouth-nixy";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, plymouth-nixy, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, ... }:
   let
     host = "enma";
     user = "zoro";
@@ -35,7 +31,6 @@
         inherit host;
         inherit user;
         inherit pkgs-unstable;
-        inherit plymouth-nixy;
       };
     };
     homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {

@@ -69,33 +69,12 @@
         "type": "github"
       }
     },
-    "plymouth-nixy": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1766674514,
-        "narHash": "sha256-BHsjKQNjnWKkApSbljHDe5DF/fPy+T9Ax5VcKz4B3f8=",
-        "owner": "iam-vasanth",
-        "repo": "plymouth-nixy",
-        "rev": "450093ff63aa77d38a75ffe082e9a877bdceada7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "iam-vasanth",
-        "repo": "plymouth-nixy",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "plymouth-nixy": "plymouth-nixy"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },
