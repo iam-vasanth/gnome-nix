@@ -130,6 +130,7 @@
     pkgs.neovim
     pkgs.gdm-settings
     pkgs.vscode
+    pkgs.direnv
     pkgs-unstable.distrobox
   ];
   
