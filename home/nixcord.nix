@@ -4,43 +4,20 @@
   programs.nixcord = {
     enable = true;
     # discord = {
-    #   vencord.enable = true;  # Use Vencord (default)
-    #   equicord.enable = true;  # Or use Equicord instead (cannot enable both)
+    #   vencord.enable = true;
+    #   equicord.enable = true;  # Cannot enable both
     # };
-    # vesktop.enable = true;  # Vesktop
-    equibop.enable = true;  # Equibop
+    # vesktop.enable = true;
+    equibop.enable = true;
+    quickCss = builtins.readFile ./quickCss.css;
     config = {
-      discordBranch = "stable";
-      minimizeToTray = true;
-      arRPC = true;
-      splashColor = "#DBDCDF";
-      autoStartMinimized = true;
       disableMinSize = true;
       autoUpdate = true;
       autoUpdateNotification = true;
-      quickCss = "quickCss.css";
-      useQuickCSS = true;
-      notifications = {
-        timeout = 5018.050541516246;
-        position = "bottom-right";
-        useNative = "not-focused";
-        logLimit = 25;
-        missed = true;
-      };
+      useQuickCss = true;
       plugins = {
-        ChatInputButtonAPI.enabled = true;
-        CommandsAPI.enabled = true;
-        DynamicImageModalAPI.enabled = true;
-        MemberListDecoratorsAPI.enabled = true;
-        MessageAccessoriesAPI.enabled = true;
-        MessageDecorationsAPI.enabled = true;
-        MessageEventsAPI.enabled = true;
-        MessagePopoverAPI.enabled = true;
-        MessageUpdaterAPI.enabled = true;
-        ServerListAPI.enabled = true;
-        UserSettingsAPI.enabled = true;
-        BetterFolders = {
-          enabled = true;
+        betterFolders = {
+          enable = true;
           sidebar = true;
           sidebarAnim = true;
           closeAllFolders = false;
@@ -50,78 +27,74 @@
           keepIcons = false;
           showFolderIcon = 1;
         };
-
-        BetterSettings = {
-          enabled = true;
+        betterSettings = {
+          enable = true;
           disableFade = true;
           organizeMenu = true;
           eagerLoad = true;
         };
-
-        BetterUploadButton.enabled = true;
-        BiggerStreamPreview.enabled = true;
+        betterUploadButton.enable = true;
+        biggerStreamPreview.enable = true;
         BlurNSFW = {
-          enabled = true;
+          enable = true;
           blurAmount = 10;
         };
-        CallTimer.enabled = true;
-        Decor = {
-          enabled = true;
-          baseUrl = "https://decor.fieryflames.dev";
-        };
-        DisableCallIdle.enabled = true;
-        FakeNitro = {
-          enabled = true;
+        callTimer.enable = true;
+        decor.enable = true;
+        disableCallIdle.enable = true;
+        fakeNitro = {
+          enable = true;
           enableStickerBypass = true;
           enableStreamQualityBypass = true;
           enableEmojiBypass = true;
           transformEmojis = true;
           transformStickers = true;
           transformCompoundSentence = false;
-          emojiSize = 48;
+          emojiSize = 48.0;
           hyperLinkText = "{{NAME}}";
-          useHyperLinks = true;
+          useEmojiHyperLinks = true;
+          useStickerHyperLinks = true;
           disableEmbedPermissionCheck = false;
-          stickerSize = 160;
+          stickerSize = 160.0;
         };
-        FakeProfileThemes = {
-          enabled = true;
+        fakeProfileThemes = {
+          enable = true;
           nitroFirst = true;
         };
-        FavoriteEmojiFirst.enabled = true;
-        FixImagesQuality = {
-          enabled = true;
+        favoriteEmojiFirst.enable = true;
+        fixImagesQuality = {
+          enable = true;
           originalImagesInChat = false;
         };
-        FixYoutubeEmbeds.enabled = true;
-        FriendInvites.enabled = true;
-        FriendsSince.enabled = true;
-        GameActivityToggle = {
-          enabled = true;
+        fixYoutubeEmbeds.enable = true;
+        friendInvites.enable = true;
+        friendsSince.enable = true;
+        gameActivityToggle = {
+          enable = true;
           oldIcon = false;
           location = "PANEL";
         };
-        GifPaste.enabled = true;
-        ImplicitRelationships = {
-          enabled = true;
+        gifPaste.enable = true;
+        implicitRelationships = {
+          enable = true;
           sortByAffinity = true;
         };
-        LoadingQuotes = {
-          enabled = true;
+        loadingQuotes = {
+          enable = true;
           replaceEvents = true;
           enablePluginPresetQuotes = false;
           enableDiscordPresetQuotes = false;
           additionalQuotes = "I use Nix btw ❄️";
           additionalQuotesDelimiter = "|";
         };
-        MemberCount = {
-          enabled = true;
+        memberCount = {
+          enable = true;
           memberList = true;
           toolTip = true;
           voiceActivity = true;
         };
-        MessageLogger = {
-          enabled = true;
+        messageLogger = {
+          enable = true;
           collapseDeleted = false;
           deleteStyle = "text";
           ignoreBots = false;
@@ -133,9 +106,9 @@
           logDeletes = true;
           inlineEdits = true;
         };
-        MoreKaomoji.enabled = true;
-        NewGuildSettings = {
-          enabled = true;
+        moreKaomoji.enable = true;
+        newGuildSettings = {
+          enable = true;
           guild = true;
           messages = 3;
           everyone = true;
@@ -144,35 +117,28 @@
           events = true;
           showAllChannels = true;
         };
-        NoF1.enabled = true;
-        NoPendingCount = {
-          enabled = true;
+        noF1.enable = true;
+        noPendingCount = {
+          enable = true;
           hideFriendRequestsCount = true;
           hideMessageRequestsCount = true;
           hidePremiumOffersCount = true;
         };
-        NoSystemBadge.enabled = true;
-        NoTypingAnimation.enabled = true;
+        noSystemBadge.enable = true;
+        noTypingAnimation.enable = true;
         OnePingPerDM = {
-          enabled = true;
+          enable = true;
           channelToAffect = "both_dms";
           allowMentions = true;
           allowEveryone = false;
         };
-        OpenInApp = {
-          enabled = true;
-          spotify = true;
-          steam = true;
-          epic = true;
-          tidal = true;
-          itunes = true;
-        };
-        PermissionsViewer = {
-          enabled = true;
+        openInApp.enable = true;
+        permissionsViewer = {
+          enable = true;
           permissionsSortOrder = 0;
         };
         PinDMs = {
-          enabled = true;
+          enable = true;
           canCollapseDmSection = false;
           userBasedCategoryList = {
             "548454674622316544" = [
@@ -187,87 +153,80 @@
           };
           pinOrder = 0;
         };
-        QuickMention.enabled = true;
-        ReadAllNotificationsButton.enabled = true;
-        ReviewDB = {
-          enabled = true;
-          notifyReviews = true;
-        };
-        ShikiCodeblocks = {
-          enabled = true;
-          theme = "https://cdn.jsdelivr.net/gh/shikijs/textmate-grammars-themes@bc5436518111d87ea58eb56d97b3f9bec30e6b83/packages/tm-themes/themes/dark-plus.json";
+        quickMention.enable = true;
+        readAllNotificationsButton.enable = true;
+        shikiCodeblocks = {
+          enable = true;
+          theme = "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/bc5436518111d87ea58eb56d97b3f9bec30e6b83/packages/tm-themes/themes/dark-plus.json";
           tryHljs = "SECONDARY";
           useDevIcon = "GREYSCALE";
-          bgOpacity = 100;
+          bgOpacity = 100.0;
         };
-        ShowHiddenChannels = {
-          enabled = true;
+        showHiddenChannels = {
+          enable = true;
           showMode = 0;
-          hideUnreads = true;
+          defaultAllowedUsersAndRolesDropdownState = true;
         };
-        ShowHiddenThings = {
-          enabled = true;
-          showTimeouts = true;
-          showInvitesPaused = true;
-          showModView = true;
-        };
-        SpotifyCrack = {
-          enabled = true;
+        showHiddenThings.enable = true;
+        spotifyCrack = {
+          enable = true;
           noSpotifyAutoPause = true;
           keepSpotifyActivityOnIdle = false;
         };
-        SpotifyShareCommands.enabled = true;
-        SuperReactionTweaks = {
-          enabled = true;
+        spotifyShareCommands.enable = true;
+        startupTimings.enable = true;
+        superReactionTweaks = {
+          enable = true;
           superReactByDefault = true;
           unlimitedSuperReactionPlaying = false;
-          superReactionPlayingLimit = 0;
+          superReactionPlayingLimit = 3.0;
         };
-        Translate = {
-          enabled = true;
+        translate = {
+          enable = true;
           service = "google";
           deeplApiKey = "";
           autoTranslate = false;
           showAutoTranslateTooltip = true;
         };
-        UnsuppressEmbeds.enabled = true;
+        toastNotifications = {
+          enable = true;
+          determineServerNotifications = true;
+          friendServerNotifications = false;
+          groupMessages = false;
+          directMessages = true;
+          notifyFor = "1126164779300560936";
+          position = "top-right";
+          renderImages = true;
+          timeout = 5.0;
+        };
+        unsuppressEmbeds.enable = true;
         USRBG = {
-          enabled = true;
+          enable = true;
           voiceBackground = true;
           nitroFirst = true;
         };
-        ValidUser.enabled = true;
-        ViewIcons.enabled = true;
-        VolumeBooster = {
-          enabled = true;
-          multiplier = 2;
+        validUser.enable = true;
+        viewIcons.enable = true;
+        voiceDownload.enable = true;
+        volumeBooster = {
+          enable = true;
+          multiplier = 2.0  ;
         };
-        WhoReacted.enabled = true;
-        YoutubeAdblock.enabled = true;
-        BadgeAPI.enabled = true;
-        NoTrack = {
-          enabled = true;
-          disableAnalytics = true;
-        };
-        Settings = {
-          enabled = true;
-          settingsLocation = "aboveNitro";
-        };
-        SupportHelper.enabled = true;
-        ExpressionCloner.enabled = true;
-        EquicordToolbox.enabled = true;
-        NewPluginsManager.enabled = true;
-        EquicordHelper = {
-          enabled = true;
-          disableCreateDMButton = false;
+        whoReacted.enable = true;
+        youtubeAdblock.enable = true;
+        expressionCloner.enable = true;
+        equicordToolbox.enable = true;
+        newPluginsManager.enable = true;
+        equicordHelper = {
+          enable = true;
           disableDMContextMenu = false;
           noMirroredCamera = false;
         };
-        VCSupport.enabled = true;
-        DisableDeepLinks.enabled = true;
-        WebContextMenus.enabled = true;
-        WebKeybinds.enabled = true;
-        WebScreenShareFixes.enabled = true;
+        disableDeepLinks.enable = true;
+        webContextMenus.enable = true;
+        webKeybinds.enable = true;
+        webRichPresence.enable = true;
+        webScreenShareFixes.enable = true;
       };
     };
   };
