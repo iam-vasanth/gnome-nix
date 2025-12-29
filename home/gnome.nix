@@ -27,6 +27,15 @@
     '';
   };
 
+  xdg.desktopEntries = {
+    equibop = {
+      name = "Equibop";
+      icon = "/home/zoro/Pictures/Wallpapers/icons/equibop.png";
+      exec = "equibop %U";
+    };
+  };
+
+
   programs.gnome-shell = {
     enable = true;
     extensions = [
