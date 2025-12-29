@@ -137,11 +137,13 @@ log INFO "Log file: $LOG_FILE"
 check_root
 
 # Setup Pictures directory
-log STEP "Step 1: Setting up Pictures directory"
-if [[ ! -d "$HOME/Pictures" ]]; then
+log STEP "Step 1: Setting up Pictures and Projects directories"
+if [[ ! -d "$HOME/Pictures" || ! -d "$HOME/Projects" ]]; then
     run_cmd "mkdir -p $HOME/Pictures/Wallpapers"
+    run_cmd "mkdir -p $HOME/Projects"
+    log INFO "Created missing directories: Pictures/Wallpapers and/or Projects"
 else
-    log INFO "Pictures directory already exists. Creating Wallpapers subdirectory if needed."
+    log INFO "Pictures and Projects directories already exist."
 fi
 
 # Copy wallpapers
