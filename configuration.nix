@@ -15,7 +15,7 @@
   # boot.loader.timeout = 3;
   
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Kernel params
   boot.consoleLogLevel = 0;
