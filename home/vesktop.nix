@@ -1,9 +1,7 @@
 { pkgs, pkgs-unstable, ... }:
 
 {
-
-programs.vesktop = {
-  enable = true;
-};
-
+  programs.vesktop = {
+    enable = true;
+  };
 }

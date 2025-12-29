@@ -1,7 +1,6 @@
 { config, host, user, ... }:
 
 {
-
   home.sessionVariables = {
     # EDITOR = "emacs";
   };

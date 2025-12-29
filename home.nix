@@ -6,10 +6,10 @@
   home.stateVersion = "25.11"; # Do not touch.
   
   imports = [
-    ./pkgs.nix
-    ./shell.nix
-    ./gnome.nix
-    # ./vesktop.nix
+    ./home/pkgs.nix
+    ./home/shell.nix
+    ./home/gnome.nix
+    ./home/vesktop.nix
     nix-flatpak.homeManagerModules.nix-flatpak
   ];
 
