@@ -8,8 +8,9 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixcord.url = "github:kaylorben/nixcord";
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, nixcord, ... }:
   let
     host = "enma";
     user = "zoro";
@@ -42,6 +43,7 @@
         inherit pkgs;
         inherit pkgs-unstable;
         inherit nix-flatpak;
+        inherit nixcord;
       };
     };
   };

@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, ... }:
+{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, nixcord, ... }:
 
 {
   home.username = user;
@@ -9,8 +9,9 @@
     ./home/pkgs.nix
     ./home/shell.nix
     ./home/gnome.nix
-    ./home/vesktop.nix
+    ./home/nixcord.nix
     nix-flatpak.homeManagerModules.nix-flatpak
+    nixcord.homeModules.nixcord
   ];
 
   programs.home-manager.enable = true;
