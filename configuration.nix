@@ -92,6 +92,18 @@
   # Enables flatpak
   services.flatpak.enable = true; 
 
+  # Enables virt-manager for managing virtual machines
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    spiceUSBRedirection = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      swtpm.enable = true;
+      vhostUserPackages = [ pkgs.virtiofsd ];
+    };
+  };
+
   # Enables CUPS to print documents.
   services.printing.enable = true;
 
