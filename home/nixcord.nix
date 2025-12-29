@@ -269,6 +269,6 @@
         WebKeybinds.enabled = true;
         WebScreenShareFixes.enabled = true;
       };
-    }
+    };
   };
 }
