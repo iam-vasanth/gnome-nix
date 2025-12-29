@@ -1,38 +1,7 @@
 { config, host, user, pkgs, pkgs-unstable, nix-flatpak, ... }:
 
 {
-  home.username = user;
-  home.homeDirectory = "/home/${user}";
-  home.stateVersion = "25.11"; # Do not touch.
-  
-  imports = [
-    nix-flatpak.homeManagerModules.nix-flatpak
-  ];
-
-  home.packages = [
-    pkgs-unstable.alacritty
-  ];
-
-  services.flatpak = {
-  enable = true;
-  packages = [
-    { appId = "app.zen_browser.zen"; origin = "flathub"; }
-    { appId = "com.spotify.Client"; origin = "flathub"; }
-    { appId = "de.haeckerfelix.Fragments"; origin = "flathub"; }
-    { appId = "com.belmoussaoui.Authenticator"; origin = "flathub"; }
-    { appId = "com.github.tchx84.Flatseal"; origin = "flathub"; }
-    { appId = "org.fedoraproject.MediaWriter"; origin = "flathub"; }
-    { appId = "org.videolan.VLC"; origin = "flathub"; }
-    { appId = "io.gitlab.adhami3310.Impression"; origin = "flathub"; }
-    { appId = "com.ranfdev.DistroShelf"; origin = "flathub"; }
-    { appId = "io.github.flattool.Warehouse"; origin = "flathub"; }
-    { appId = "org.upscayl.Upscayl"; origin = "flathub"; }
-    { appId = "md.obsidian.Obsidian"; origin = "flathub"; }
-    { appId = "com.stremio.Stremio"; origin = "flathub"; }
-    # { appId = "flathub:com.ml4w.dotfilesinstaller"; origin = "flathub" } # For dotfiles management
-  ];
-  };
-
+  # Sets up XDG folders
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
@@ -46,6 +15,7 @@
     desktop = null;
   };
 
+  # Adds bookmarks to folders to nautilus bookmarks
   home.file = {
     ".config/gtk-3.0/bookmarks".text = ''
       file://${config.home.homeDirectory}/Downloads
@@ -55,23 +25,6 @@
       file://${config.home.homeDirectory}/Videos
       file://${config.home.homeDirectory}/Music
     '';
-  };
-
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  # Bash config
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      "ll" = "ls -alh";
-      ".." = "cd ..";
-      rebuild = "sudo nixos-rebuild switch --impure --flake ~/gnome-nix";
-      flakeu  = "nix flake update --flake ~/gnome-nix";
-      hupdate = "home-manager switch --impure --flake ~/gnome-nix";
-      "gs" = "git status";
-      };
   };
 
   programs.gnome-shell = {
@@ -167,5 +120,4 @@
       show-hidden=true;
     };
   };
-  programs.home-manager.enable = true;
 }

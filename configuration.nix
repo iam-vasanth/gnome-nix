@@ -63,15 +63,25 @@
     LC_TIME = "en_IN";
   };
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.${user} = {
+    isNormalUser = true;
+    description = "ZORO";
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "fuse" "video" ];
+    packages = with pkgs; [
+    ];
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.displayManager.autoLogin = {
     enable = true;
-    user = "zoro";
+    user = user;
   };
-  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -98,15 +108,6 @@
   # Enable touchpad support.
   services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
-    isNormalUser = true;
-    description = "ZORO";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "fuse" "video" ];
-    packages = with pkgs; [
-    ];
-  };
-
   # # To enable Vmware guest tools
   # virtualisation.vmware.guest.enable = true;
 
@@ -128,7 +129,6 @@
     pkgs.dos2unix
     pkgs.imagemagick
     pkgs.neovim
-    pkgs.gdm-settings
     pkgs.vscode
     pkgs.direnv
     pkgs-unstable.distrobox
@@ -141,14 +141,14 @@
     options = "--delete-older-than 7d +5";
   };
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = true;
-      PermitRootLogin = "yes";
-    };
-  };
+  # # Enable the OpenSSH daemon.
+  # services.openssh = {
+  #   enable = true;
+  #   settings = {
+  #     PasswordAuthentication = true;
+  #     PermitRootLogin = "yes";
+  #   };
+  # };
 
   system.stateVersion = "25.11"; # Do not touch this
 }
