@@ -27,6 +27,7 @@
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "vt.global_cursor_default=0"
+    "i915.force_probe=46a6"
   ];
 
   # Silences systemd logs
@@ -91,6 +92,24 @@
 
   # Enables flatpak
   services.flatpak.enable = true; 
+
+  services.power-profiles-daemon.enable = false;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+      # Battery charge thresholds
+      START_CHARGE_THRESH_BAT0 = 75;  # Start charging when below 75%
+      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging when above 80%
+
+      # Other useful defaults (TLP enables many automatically)
+      RUNTIME_PM_ON_BAT = "auto";
+    };
+  };
 
   # Enables virt-manager for managing virtual machines
   programs.virt-manager.enable = true;

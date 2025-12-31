@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, nixcord, ... }:
+{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, nixcord, sops-nix, ... }:
 
 {
   home.username = user;

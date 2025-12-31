@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, sops-nix, ... }:
 
 {
   sops = {
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-    defaultSopsFile = ./.secrets/git-ssh.yaml;
+    defaultSopsFile = builtins.path {
+      path = ./.secrets/git-ssh.yaml;
+      name = "git-ssh-yaml";
+    };
     secrets = {
       git_ssh_private_key = {
         path = "${config.home.homeDirectory}/.ssh/id_ed25519";
@@ -17,7 +20,9 @@
     addKeysToAgent = "yes";
     matchBlocks = {
       "github.com" = {
-        identityFile = config.sops.secrets.git_ssh_private_key;
+        hostname = "github.com";
+        user = "git";
+        identityFile = config.sops.secrets.git_ssh_private_key.path;
       };
     };
   };
