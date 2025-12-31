@@ -10,6 +10,8 @@
     ./home/shell.nix
     ./home/gnome.nix
     ./home/nixcord.nix
+    ./home/git.nix
+    ./home/ssh.nix
     nix-flatpak.homeManagerModules.nix-flatpak
     nixcord.homeModules.nixcord
     sops-nix.homeManagerModules.sops
