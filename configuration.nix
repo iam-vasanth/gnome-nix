@@ -137,7 +137,7 @@
 
   environment.systemPackages = [
     pkgs.wget
-    pkgs.git
+    pkgs.gitFull
     pkgs.fuse
     pkgs.fuse3
     pkgs.dos2unix
@@ -145,6 +145,7 @@
     pkgs.neovim
     pkgs.vscode
     pkgs.direnv
+    pkgs.zed-editor
     pkgs-unstable.distrobox
   ];
   
