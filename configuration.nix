@@ -83,6 +83,8 @@
     enable = true;
     user = user;
   };
+  services.gnome.gnome-keyring.enable = true;
+  systemd.user.services.gnome-keyring-ssh.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -175,14 +177,14 @@
     options = "--delete-older-than 7d +5";
   };
 
-  # # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     PasswordAuthentication = true;
-  #     PermitRootLogin = "yes";
-  #   };
-  # };
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   system.stateVersion = "25.11"; # Do not touch this
 }
