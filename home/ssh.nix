@@ -4,7 +4,7 @@
   sops = {
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     defaultSopsFile = builtins.path {
-      path = ./.secrets/git-ssh.yaml;
+      path = /home/zoro/gnome-nix/.secrets/git-ssh.yaml;
       name = "git-ssh.yaml";
     };
     secrets = {
@@ -17,6 +17,7 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "github.com" = {
         hostname = "github.com";
