@@ -84,7 +84,7 @@
     user = user;
   };
   services.gnome.gnome-keyring.enable = true;
-  systemd.user.services.gnome-keyring-ssh.enable = false;
+  services.gnome.gcr-ssh-agent.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
