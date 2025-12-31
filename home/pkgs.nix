@@ -3,6 +3,10 @@
 {
   home.packages = [
     pkgs.spotify-player
+    pkgs.gitFull
+    pkgs.sops
+    pkgs.age
+    pkgs.ssh-to-age
     pkgs-unstable.alacritty
   ];
 

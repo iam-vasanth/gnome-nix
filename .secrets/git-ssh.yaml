@@ -1,0 +1,16 @@
+git_ssh_private_key: ENC[AES256_GCM,data:WRFK4vllcw7S8qcX9oQ7PT2uVOWqtrpO8/kEjXUGFH6rtB4Az7XbF2aI1vTU0BDWLn1d9MmVb5W59Pld+yy/xXxIgpTelw4UVrqR/1lz5Osx+ge8ySrY8hAJw04RZUxS0nysuFSbG+FGdUQSvtGHdzAjm22OqQHcdMRl/L7PPUDhYHtkaEKTb/cXQHoZvKFDbhfTEvS3M3yg/In6c20/hKZ1v2eYaJHglFJZi2J9,iv:Pi00XjjyQQzkKjiyYBSDRSwpfXAUNw1SW3dR2cY662w=,tag:+sZdevF+8u/S2ONnlGouIA==,type:str]
+sops:
+    age:
+        - recipient: age17a2043wru4gvy02h8cm6n5d596ne3xsznl7c8vxg5hv8cjfe2qps29nf9k
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2TnZlY1FaMjFrRmxKc0R1
+            WmNPTEZDcFhMbytvTExJTld4ZElTRERUNW5BCkM1c3hPMC9QUjVGZnZRRHpyU3RF
+            UDRsTEE5TDVYejlXaldXcDVVWXBrUnMKLS0tIExGTjNUVTEyY0c2cDQvY2IwdzRW
+            VzFUUWxaL1o1VkgvR0lFL0NQZkZjVlEKkzGUuoVkkfnmt8ZR/Nis7eawoKt7h0NI
+            mLyIBgBE2XtFu056Npn+nNy6X9ERL6IznjsUWV69dYRmJWEaSsEPKA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-31T21:19:05Z"
+    mac: ENC[AES256_GCM,data:dl0uZlKDq+Lj+LT2lpUFECtcAmvRdxcFFmNeYO0CNTwLuZA4LwcR4UuE6HmUAKyio7GnwDTtBH73fDp4t07SKdfFFdkiJYmpk//lFTGe0X12FDzv0QtmBrj0gG9NH94snzrGoMBZLxXBUsRL7uLat0jtgGCWtYJtXjEriLG393w=,iv:ignUEjARr9HdquAZv93BbJ1ebj4nqDwJgB2mdzXZmGE=,tag:I+9IfZIsREVYzSyWjZc8HQ==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.11.0

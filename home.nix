@@ -12,6 +12,7 @@
     ./home/nixcord.nix
     nix-flatpak.homeManagerModules.nix-flatpak
     nixcord.homeModules.nixcord
+    sops-nix.homeManagerModules.sops
   ];
 
   programs.home-manager.enable = true;
