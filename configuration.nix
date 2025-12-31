@@ -94,13 +94,15 @@
 
   # Enables virt-manager for managing virtual machines
   programs.virt-manager.enable = true;
-  virtualisation.libvirtd = {
-    enable = true;
-    spiceUSBRedirection = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      swtpm.enable = true;
-      vhostUserPackages = [ pkgs.virtiofsd ];
+  virtualisation = {
+    spiceUSBRedirection.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        swtpm.enable = true;
+        vhostUserPackages = [ pkgs.virtiofsd ];
+      };
     };
   };
 
