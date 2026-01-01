@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, nixcord, ... }:
+{ ... }:
 
 {
   programs.nixcord = {

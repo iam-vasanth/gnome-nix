@@ -1,10 +1,9 @@
-{ config, host, user, pkgs, pkgs-unstable, ... }:
+{ host, user, pkgs, pkgs-unstable, ... }:
 
 {
-  imports =
-    [
-      /etc/nixos/hardware-configuration.nix
-    ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -13,7 +12,7 @@
 
   # Hide systemd boot menu (press Space to show it when needed)
   # boot.loader.timeout = 3;
-  
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -39,7 +38,10 @@
   };
 
   # Enables flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Enables networking
   networking.networkmanager.enable = true;
@@ -68,8 +70,12 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "ZORO";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "fuse" "video" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "fuse"
+      "video"
     ];
   };
 
@@ -93,7 +99,7 @@
   };
 
   # Enables flatpak
-  services.flatpak.enable = true; 
+  services.flatpak.enable = true;
 
   services.power-profiles-daemon.enable = false;
   services.tlp = {
@@ -105,13 +111,16 @@
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
       # Battery charge thresholds
-      START_CHARGE_THRESH_BAT0 = 75;  # Start charging when below 75%
-      STOP_CHARGE_THRESH_BAT0 = 80;   # Stop charging when above 80%
+      START_CHARGE_THRESH_BAT0 = 75; # Start charging when below 75%
+      STOP_CHARGE_THRESH_BAT0 = 80; # Stop charging when above 80%
 
       # Other useful defaults (TLP enables many automatically)
       RUNTIME_PM_ON_BAT = "auto";
     };
   };
+
+  # To use dynamically linked executables
+  programs.nix-ld.enable = true;
 
   # Enables virt-manager for managing virtual machines
   programs.virt-manager.enable = true;
@@ -166,10 +175,11 @@
     pkgs.neovim
     pkgs.vscode
     pkgs.direnv
+    pkgs.nixd
     pkgs.zed-editor
     pkgs-unstable.distrobox
   ];
-  
+
   # Automatically garbage collect old generations
   nix.gc = {
     automatic = true;

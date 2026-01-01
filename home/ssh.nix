@@ -1,4 +1,4 @@
-{ config, user, pkgs, pkgs-unstable, sops-nix, ... }:
+{ config, user, ... }:
 
 {
   sops = {
@@ -21,5 +21,10 @@
         addKeysToAgent = "yes";
       };
     };
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
   };
 }

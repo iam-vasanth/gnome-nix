@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, ... }:
+{ config, ... }:
 
 {
   programs.git = {

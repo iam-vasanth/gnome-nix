@@ -1,4 +1,4 @@
-{ config, host, user, ... }:
+{ ... }:
 
 {
   home.sessionVariables = {

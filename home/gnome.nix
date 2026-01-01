@@ -1,4 +1,4 @@
-{ config, host, user, pkgs, pkgs-unstable, nix-flatpak, ... }:
+{ config, pkgs, ... }:
 
 {
   # Sets up XDG folders
@@ -49,7 +49,7 @@
   };
 /* Extensions can be configured with dconf options but to know the various options for various extension.
    Have to dump the dconf settings using https://github.com/nix-community/dconf2nix */
-  
+
   dconf.settings = {
     # Set wallpaper
     "org/gnome/desktop/background" = {
