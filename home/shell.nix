@@ -2,7 +2,7 @@
 
 {
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "neovim";
   };
 
   # Bash config

@@ -1,0 +1,16 @@
+github_ssh: ENC[AES256_GCM,data:aUo5Qytde2WMqUj2Q9QsUhTELACpnGG98WSIKVGrj/cmgEeL70mn/2OdrBTjItmL7LiX+JAuq7x5KTcSq/I9TKfgaha1srhXhF6Afi4RXX0qKoM/MUT6tIyIkscbQhojn7mQMMoDBj9a/HDH2ZloqUm6LHIQC19f/ZIC/sLp1BKzk+P2LHzfadxFvGf+6oc9jnw6knYmKVrhOn48Lwz+d1+PUUKur/mRts7mj1r7ryBTZWsSAg5XIeJoOjf64DPr3dE/qNFMdk5u9bxpzoAZf5u8kNMBKDcZg4SQ9+VwvEx+1zZEJGnYjRDP5Jp2xxIs9GslH4OIHJbRR3Jz3F2b9I7yG7x2U8hpzmNtzP5Sdgsy4/IaTxpaG4cvXTNr+CGHgDB46at9j+of5JZokwaZ3KWZReONgd9P4nOfPf3317F8p/D9cC01KXu4bkASZv/BE3Uhk81LumrNka34dP907xm4YHI2Wl1ckRzKcsArb4yJM4QSWFMUL3u7BF6YKPAnKgZFSK1iEPUBmnsR1srW6HKBbYoUBcpUmbxGqYv99xwFxDc=,iv:w8QWA+yCsz5ITSe28+HJzbB/LLrC+05MZkN09LrT89I=,tag:udFazb4PckoMurDy738D6A==,type:str]
+sops:
+    age:
+        - recipient: age1cfgl5syys3skkd73uayppvdp2688sch0tm3arl9cqvyw64esyymqtalfgs
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPUHdTMnA3ejFPQ0xNQ0wv
+            SEpZTkk0aHYzM0F6Ri9RaW1qVXA1dzF2Q0ZZCmJHZnNZYlo4TFVNVXdrUzNyRVFm
+            TVNUV0ZiKzhOaVM2VGlCMjZPYnBWMk0KLS0tIFB5aUFhcmROOG9ON3hya3lGWE9n
+            Y0NSWkx0MFQ2OTFydnNBNS9KUHpnTVkK4A/41vELbJmaKGcdZ3QEe9Z96K7T9dan
+            7Rw6X8RS864PTCX+m9IdpKVBPJInW6xbFUUBUtMkHHGeuhdcRSB8Eg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-01-01T01:15:57Z"
+    mac: ENC[AES256_GCM,data:CzcUUb5Z60p8mR0jBBAE11iesqZ/htxsYLGdsJeo2e6Fd7T91n7HXNwUU8hSnMIY8QKyq2xshwrPurLuiN7tJ6tCcvQmxlISjFoQ5P1Quge1zfNGwfgthn9/EXd1LYNMQWqc5Y6b6DnVV8FUambUDrl4FKz38I5d6V1qES6V/Bg=,iv:uuHDTvoLajDybZ0BGRGYtbRHmCWYkL5oedq/xPSlrFc=,tag:o26n/2EONjLPi4xfAyx+7A==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.11.0

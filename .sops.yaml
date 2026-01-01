@@ -1,8 +1,7 @@
 keys:
-  - &my_key age17a2043wru4gvy02h8cm6n5d596ne3xsznl7c8vxg5hv8cjfe2qps29nf9k
-
+  - &thinkpad_x1 age1cfgl5syys3skkd73uayppvdp2688sch0tm3arl9cqvyw64esyymqtalfgs
 creation_rules:
-  - path_regex: \.secrets/[^/]+\.yaml$
+  - path_regex: '^\.secrets/.*\.(yaml|json|env|ini)$'
     key_groups:
       - age:
-          - *my_key
+        - *thinkpad_x1
