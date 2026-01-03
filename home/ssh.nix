@@ -3,7 +3,7 @@
 {
   sops = {
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-    defaultSopsFile = /home/${user}/gnome-nix/.secrets/github_ssh.yaml;
+    defaultSopsFile = ../.secrets/github_ssh.yaml;
     secrets = {
       github_ssh = {
         path = "${config.home.homeDirectory}/.ssh/github_ssh";
