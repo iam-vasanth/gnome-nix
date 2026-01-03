@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
   };
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, nixcord, sops-nix, ... }:
+  outputs = { nixpkgs-stable, nixpkgs-unstable, home-manager, nix-flatpak, nixcord, sops-nix, ... }:
   let
     host = "enma";
     user = "zoro";

@@ -6,6 +6,7 @@
     pkgs.sops
     pkgs.age
     pkgs.ssh-to-age
+    pkgs.teams-for-linux
     pkgs-unstable.alacritty
   ];
 

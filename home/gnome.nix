@@ -14,7 +14,6 @@
     templates = null;
     desktop = null;
   };
-
   # Adds bookmarks to folders to nautilus bookmarks
   home.file = {
     ".config/gtk-3.0/bookmarks".text = ''
